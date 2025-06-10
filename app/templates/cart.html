@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="container">
+    <h1 style="text-align: center; margin-bottom: 2rem;">Shopping Cart</h1>
+    
+    {% if cart_items %}
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #f2f2f2;">
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">Book Title</th>
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">Quantity</th>
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">Price</th>
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">Total</th>
+                        <th style="padding: 0.75rem; border: 1px solid #ddd;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                        <tr>
+                            <td style="padding: 0.5rem; border: 1px solid #ddd;">{{ item.book.title }}</td>
+                            <td style="padding: 0.5rem; border: 1px solid #ddd;">{{ item.quantity }}</td>
+                            <td style="padding: 0.5rem; border: 1px solid #ddd;">₹{{ item.book.price|floatformat:2 }}</td>
+                            <td style="padding: 0.5rem; border: 1px solid #ddd;">₹{{ item.book.price|multiply:item.quantity|floatformat:2 }}</td>
+                            <td style="padding: 0.5rem; border: 1px solid #ddd;">
+                                <form method="post" action="{% url 'remove_from_cart' item.id %}" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" style="background-color: #e74c3c; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <div style="margin-top: 2rem; text-align: right; padding: 1rem; background: #f9f9f9; border-radius: 8px;">
+                <p style="font-size: 1.25rem; margin: 0;">
+                    Total: ₹{{ total|floatformat:2 }}
+                </p>
+                <div style="margin-top: 1rem;">
+                    <a href="{% url 'checkout' %}" style="display: inline-block; padding: 0.75rem 1.5rem; background: #28a745; color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">Proceed to Checkout</a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div style="text-align: center; padding: 3rem;">
+            <p style="font-size: 1.25rem; color: #666;">Your cart is empty</p>
+            <a href="{% url 'book_list' %}" style="display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; background: #007bff; color: white; text-decoration: none; border-radius: 4px;">Continue Shopping</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

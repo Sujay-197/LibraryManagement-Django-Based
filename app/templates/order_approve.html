@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Order #{{ order.id }} Review</h1>
+    <p><strong>Name:</strong> {{ order.full_name }}</p>
+    <p><strong>Email:</strong> {{ order.email }}</p>
+    <p><strong>Address:</strong> {{ order.address }}</p>
+    <p><strong>Phone:</strong> {{ order.phone }}</p>
+    <p><strong>Status:</strong> {{ order.status }}</p>
+    <h3>Items:</h3>
+    <ul>
+        {% for item in order.items.all %}
+        <li>{{ item.book.title }} (x{{ item.quantity }})</li>
+        {% endfor %}
+    </ul>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="background:#28a745; color:white;">Update Status</button>
+        <a href="{% url 'order_list' %}" style="margin-left:1rem;">Back to Orders</a>
+    </form>
+</div>
+{% endblock %}

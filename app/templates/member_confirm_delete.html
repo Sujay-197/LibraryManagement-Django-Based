@@ -1,0 +1,10 @@
+<!-- Member Confirm Delete Template -->
+<link rel="stylesheet" href="/static/style.css">
+<div class="container">
+<h1>Delete Member</h1>
+<p>Are you sure you want to delete "{{ member.name }}"?</p>
+<form method="post">{% csrf_token %}
+  <button type="submit">Yes, delete</button>
+</form>
+<a href="{% url 'member_detail' member.pk %}">Cancel</a>
+</div>

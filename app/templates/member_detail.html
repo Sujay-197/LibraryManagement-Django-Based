@@ -1,0 +1,10 @@
+<!-- Member Detail Template -->
+<link rel="stylesheet" href="/static/style.css">
+<div class="container">
+<h1>{{ member.name }}</h1>
+<p><strong>Email:</strong> {{ member.email }}</p>
+<p><strong>Joined:</strong> {{ member.joined_date }}</p>
+<a href="{% url 'member_update' member.pk %}">Edit</a> |
+<a href="{% url 'member_delete' member.pk %}">Delete</a> |
+<a href="{% url 'member_list' %}">Back to list</a>
+</div>

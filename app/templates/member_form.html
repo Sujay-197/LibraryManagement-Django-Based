@@ -1,0 +1,11 @@
+<!-- Member Form Template -->
+<link rel="stylesheet" href="/static/style.css">
+<div class="container">
+<h1>{% if form.instance.pk %}Edit Member{% else %}Add Member{% endif %}</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Save</button>
+</form>
+<a href="{% url 'member_list' %}">Back to list</a>
+</div>

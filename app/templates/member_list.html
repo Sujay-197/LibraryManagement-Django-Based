@@ -1,0 +1,18 @@
+<!-- Member List Template -->
+<link rel="stylesheet" href="/static/style.css">
+<div class="container">
+<h1>Member List</h1>
+<a href="{% url 'member_create' %}">Add Member</a>
+<ul>
+  {% for member in members %}
+    <li>
+      <a href="{% url 'member_detail' member.pk %}">{{ member.name }}</a> ({{ member.email }})
+      [<a href="{% url 'member_update' member.pk %}">Edit</a>]
+      [<a href="{% url 'member_delete' member.pk %}">Delete</a>]
+    </li>
+  {% empty %}
+    <li>No members found.</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'book_list' %}">View Books</a>
+</div>

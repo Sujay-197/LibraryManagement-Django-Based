@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="max-width: 800px; margin: 0 auto; padding: 2rem;">
+    <h1 style="text-align: center; margin-bottom: 2rem;">Checkout</h1>
+    
+    <div style="background: #f9f9f9; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+        <h2 style="margin-bottom: 1rem;">Order Summary</h2>
+        {% for item in cart_items %}
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span>{{ item.book.title }} (x{{ item.quantity }})</span>
+                <span>₹{{ item.book.price|floatformat:2 }}</span>
+            </div>
+        {% endfor %}
+        <div style="border-top: 2px solid #ddd; margin-top: 1rem; padding-top: 1rem;">
+            <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                <span>Total Amount:</span>
+                <span>₹{{ total|floatformat:2 }}</span>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        {% csrf_token %}
+        <div style="margin-bottom: 1.5rem;">
+            <h2>Shipping Information</h2>
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem;">Full Name</label>
+                <input type="text" name="full_name" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem;">Email</label>
+                <input type="email" name="email" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem;">Address</label>
+                <textarea name="address" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; min-height: 100px;"></textarea>
+            </div>
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem;">Phone Number</label>
+                <input type="tel" name="phone" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <button type="submit" style="background: #28a745; color: white; border: none; padding: 1rem 2rem; border-radius: 4px; font-size: 1.1rem; cursor: pointer;">Place Order</button>
+        </div>
+    </form>
+
+    <div style="text-align: center; margin-top: 1rem;">
+        <a href="{% url 'view_cart' %}" style="color: #666; text-decoration: none;">← Return to Cart</a>
+    </div>
+</div>
+{% endblock %}

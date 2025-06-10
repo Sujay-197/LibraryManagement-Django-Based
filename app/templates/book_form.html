@@ -1,0 +1,11 @@
+<!-- Book Form Template -->
+<link rel="stylesheet" href="/static/style.css">
+<div class="container">
+<h1>{% if form.instance.pk %}Edit Book{% else %}Add Book{% endif %}</h1>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Save</button>
+</form>
+<a href="{% url 'book_list' %}">Back to list</a>
+</div>

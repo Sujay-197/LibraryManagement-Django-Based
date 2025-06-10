@@ -1,0 +1,179 @@
+/* Simple, modern, and responsive styles for LibMan */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: repeating-linear-gradient(135deg, #f5f7fa 0px, #f5f7fa 40px, #e3e9f0 40px, #e3e9f0 80px);
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    min-height: 100vh;
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+/* Main container styles */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 2rem 2.5rem;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(33,147,176,0.10);
+}
+
+/* Button and link styles */
+.main-btn, button, input[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.8rem 1.8rem;
+    background: linear-gradient(90deg, #6dd5ed 0%, #2193b0 100%);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 4px 16px rgba(33,147,176,0.10);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.main-btn:hover, button:hover, input[type="submit"]:hover {
+    background: linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(33,147,176,0.18);
+}
+
+a {
+    color: #2193b0;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+a:hover {
+    color: #6dd5ed;
+}
+
+/* List styles */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(44,62,80,0.12);
+}
+
+/* Form styles */
+form {
+    margin-top: 1.5rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: 2px solid #e3e9f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    border-color: #2193b0;
+    outline: none;
+}
+
+/* Image styles */
+img {
+    border-radius: 12px;
+    margin-top: 0.5rem;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Navigation styles */
+nav {
+    background: linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%);
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(33,147,176,0.15);
+}
+
+nav a {
+    color: #fff;
+    margin: 0 1.2rem;
+    font-weight: 500;
+    position: relative;
+}
+
+nav a:hover {
+    color: #fff;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #fff;
+    transition: width 0.2s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Admin buttons */
+.admin-btns {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 10;
+}
+
+.admin-btns a {
+    background: rgba(255, 255, 255, 0.9);
+    color: #2193b0;
+    border-radius: 8px;
+    padding: 0.5rem 1.2rem;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(33,147,176,0.06);
+    backdrop-filter: blur(4px);
+    transition: all 0.2s;
+}
+
+.admin-btns a:hover {
+    background: #fff;
+    color: #17607e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(33,147,176,0.12);
+}
